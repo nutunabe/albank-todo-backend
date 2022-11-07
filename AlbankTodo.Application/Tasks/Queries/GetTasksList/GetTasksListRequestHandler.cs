@@ -1,5 +1,4 @@
-﻿using AlbankTodo.Application.Tasks.Queries.GetTask;
-using AlbankTodo.Core.Entities;
+﻿using AlbankTodo.Core.Entities;
 using AlbankTodo.Core.Interfaces;
 using AutoMapper;
 using MediatR;
@@ -12,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace AlbankTodo.Application.Tasks.Queries.GetTasksList
 {
-    public class GetTasksListRequestHandler : IRequestHandler<GetTasksListRequest, IEnumerable<AlbankTask>>
+    public class GetTasksListRequestHandler : IRequestHandler<GetTasksListRequest, IEnumerable<TaskDto>>
     {
         private readonly ITaskRepository _taskRepository;
         private readonly IMapper _mapper;
@@ -23,10 +22,10 @@ namespace AlbankTodo.Application.Tasks.Queries.GetTasksList
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<AlbankTask>> Handle(GetTasksListRequest request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<TaskDto>> Handle(GetTasksListRequest request, CancellationToken cancellationToken)
         {
             var tasks = await _taskRepository.GetAllTasksAsync();
-            return _mapper.Map<IEnumerable<AlbankTask>>(tasks);
+            return _mapper.Map<IEnumerable<TaskDto>>(tasks);
         }
     }
 }

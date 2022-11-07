@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace AlbankTodo.Application.Tasks.Queries.GetTask
 {
-    public class GetTaskRequestHandler : IRequestHandler<GetTaskRequest, AlbankTask>
+    public class GetTaskRequestHandler : IRequestHandler<GetTaskRequest, TaskDto>
     {
         private readonly ITaskRepository _taskRepository;
         private readonly IMapper _mapper;
@@ -22,10 +22,10 @@ namespace AlbankTodo.Application.Tasks.Queries.GetTask
             _mapper = mapper;
         }
 
-        public async Task<AlbankTask> Handle(GetTaskRequest request, CancellationToken cancellationToken)
+        public async Task<TaskDto> Handle(GetTaskRequest request, CancellationToken cancellationToken)
         {
             var task = await _taskRepository.GetTaskAsync(request.Id);
-            return _mapper.Map<AlbankTask>(task);
+            return _mapper.Map<TaskDto>(task);
         }
     }
 }

@@ -1,14 +1,16 @@
 ﻿using AlbankTodo.Core.Entities;
-using MediatR;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
-namespace AlbankTodo.Application.Tasks.Queries.GetTasksList
+namespace AlbankTodo.Application.Tasks.Queries
 {
-    public class GetTasksListRequest : IRequest<IEnumerable<TaskDto>>
+    public class TaskDto
     {
         public int Id { get; set; }
         public string Title { get; set; }
@@ -16,6 +18,7 @@ namespace AlbankTodo.Application.Tasks.Queries.GetTasksList
         public DateTime DueDate { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime CompletedOn { get; set; }
+        [JsonConverter(typeof(StringEnumConverter))]
         public Status Status { get; set; }
     }
 }
