@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace AlbankTodo.Infrastructure.Configurations
 {
-    internal class TaskConfiguration : IEntityTypeConfiguration<AlbankTask>
+    public class TaskConfiguration : IEntityTypeConfiguration<AlbankTask>
     {
         public void Configure(EntityTypeBuilder<AlbankTask> builder)
         {

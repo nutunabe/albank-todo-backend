@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AlbankTodo.Infrastructure.Data
 {
-    internal class AlbankTodoContext : DbContext
+    public class AlbankTodoContext : DbContext
     {
         public AlbankTodoContext(DbContextOptions options)
             : base(options) { }
