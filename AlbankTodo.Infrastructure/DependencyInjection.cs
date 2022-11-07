@@ -21,6 +21,7 @@ namespace AlbankTodo.Infrastructure
             services.AddDbContext<AlbankTodoContext>(options => options.UseNpgsql(connString));
             //services.AddScoped<IAlbankTodoContext>(provider => provider.GetService<AlbankTodoContext>());
             services.AddScoped<ITaskRepository, TaskRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             return services;
         }
     }

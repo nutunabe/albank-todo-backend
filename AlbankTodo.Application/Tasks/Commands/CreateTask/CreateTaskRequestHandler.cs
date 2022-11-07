@@ -15,12 +15,14 @@ namespace AlbankTodo.Application.Tasks.Commands.CreateTask
     public class CreateTaskRequestHandler : IRequestHandler<CreateTaskRequest>
     {
         private readonly ITaskRepository _taskRepository;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public CreateTaskRequestHandler(ITaskRepository taskRepository, IMapper mapper)
+        public CreateTaskRequestHandler(ITaskRepository taskRepository, IMapper mapper, IUnitOfWork unitOfWork)
         {
             _taskRepository = taskRepository;
             _mapper = mapper;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<Unit> Handle(CreateTaskRequest request, CancellationToken cancellationToken)
@@ -29,7 +31,7 @@ namespace AlbankTodo.Application.Tasks.Commands.CreateTask
             task.CreatedOn = DateTime.Now;
             task.Status = Status.CREATED;
             _taskRepository.AddTask(task);
-            // TODO: saveChangesAsync();
+            await _unitOfWork.Complete();
             return new Unit();
         }
     }

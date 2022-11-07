@@ -1,6 +1,7 @@
 ﻿using AlbankTodo.Application.Common;
 using AlbankTodo.Core.Entities;
 using AlbankTodo.Core.Interfaces;
+using AlbankTodo.Infrastructure.Data;
 using AutoMapper;
 using MediatR;
 using System;
@@ -15,12 +16,14 @@ namespace AlbankTodo.Application.Tasks.Commands.UpdateTask
     public class UpdateTaskRequestHandler : IRequestHandler<UpdateTaskRequest>
     {
         private readonly ITaskRepository _taskRepository;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public UpdateTaskRequestHandler(ITaskRepository taskRepository, IMapper mapper)
+        public UpdateTaskRequestHandler(ITaskRepository taskRepository, IMapper mapper, IUnitOfWork unitOfWork)
         {
             _taskRepository = taskRepository;
             _mapper = mapper;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<Unit> Handle(UpdateTaskRequest request, CancellationToken cancellationToken)
@@ -32,7 +35,7 @@ namespace AlbankTodo.Application.Tasks.Commands.UpdateTask
             }
             _mapper.Map(request, task);
             _taskRepository.UpdateTask(task);
-            // TODO: saveChangesAsync();
+            await _unitOfWork.Complete();
             return new Unit();
         }
     }
