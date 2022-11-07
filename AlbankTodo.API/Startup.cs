@@ -1,3 +1,5 @@
+using AlbankTodo.API.Helpers;
+using AlbankTodo.Application;
 using AlbankTodo.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -20,7 +22,20 @@ namespace AlbankTodo.API
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper(typeof(MappingProfiles));
+
             services.AddInfrastructure(configuration);
+            services.AddApplication();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", policy =>
+                {
+                    policy.AllowAnyHeader();
+                    policy.AllowAnyMethod();
+                    policy.AllowAnyOrigin();
+                });
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -31,13 +46,12 @@ namespace AlbankTodo.API
             }
 
             app.UseRouting();
+            app.UseHttpsRedirection();
+            app.UseCors("AllowAll");
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapControllers();
             });
         }
     }
