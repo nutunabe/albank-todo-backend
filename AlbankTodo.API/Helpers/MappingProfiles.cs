@@ -11,6 +11,7 @@ namespace AlbankTodo.API.Helpers
     {
         public MappingProfiles()
         {
+            CreateMap<CreateTaskRequest, AlbankTask>();
             CreateMap<AlbankTask, TaskDto>();
             CreateMap<CreateTaskDto, CreateTaskRequest>();
             CreateMap<UpdateTaskDto, UpdateTaskRequest>();
