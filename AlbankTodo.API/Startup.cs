@@ -26,6 +26,7 @@ namespace AlbankTodo.API
 
             services.AddInfrastructure(configuration);
             services.AddApplication();
+            services.AddControllers();
 
             services.AddCors(options =>
             {

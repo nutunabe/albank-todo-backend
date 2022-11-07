@@ -1,5 +1,6 @@
 ﻿using AlbankTodo.Core.Interfaces;
 using AlbankTodo.Infrastructure.Data;
+using AlbankTodo.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,6 +20,7 @@ namespace AlbankTodo.Infrastructure
             var connString = configuration["DbConnection"];
             services.AddDbContext<AlbankTodoContext>(options => options.UseNpgsql(connString));
             //services.AddScoped<IAlbankTodoContext>(provider => provider.GetService<AlbankTodoContext>());
+            services.AddScoped<ITaskRepository, TaskRepository>();
             return services;
         }
     }
