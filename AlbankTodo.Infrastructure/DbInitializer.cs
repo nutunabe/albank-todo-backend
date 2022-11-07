@@ -9,7 +9,7 @@ namespace AlbankTodo.Infrastructure
 {
     public class DbInitializer
     {
-        public void Initialize(AlbankTodoContext context) =>
+        public static void Initialize(AlbankTodoContext context) =>
             context.Database.EnsureCreated();
     }
 }
