@@ -37,6 +37,8 @@ namespace AlbankTodo.API
                     policy.AllowAnyOrigin();
                 });
             });
+
+            services.AddSwaggerGen();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -45,6 +47,13 @@ namespace AlbankTodo.API
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(config =>
+            {
+                config.RoutePrefix = string.Empty;
+                config.SwaggerEndpoint("swagger/v1/swagger.json", "Tasks API");
+            });
 
             app.UseRouting();
             app.UseHttpsRedirection();
