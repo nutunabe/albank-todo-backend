@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AlbankTodo.Core\AlbankTodo.Core.csproj" />
+    <ProjectReference Include="..\AlbankTodo.Infrastructure\AlbankTodo.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
