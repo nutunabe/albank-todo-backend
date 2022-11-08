@@ -7,6 +7,7 @@ using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -31,7 +32,7 @@ namespace AlbankTodo.Application.Tasks.Commands.UpdateTask
             var task = await _taskRepository.GetTaskAsync(request.Id);
             if (task == null)
             {
-                throw new AlbankTodoException("NOT_FOUND", $"Task with Id {request.Id} not found.");
+                throw new AlbankTodoException(HttpStatusCode.NotFound, $"Task with Id {request.Id} not found.");
             }
             _mapper.Map(request, task);
             _taskRepository.UpdateTask(task);

@@ -6,6 +6,7 @@ using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.WebSockets;
 using System.Text;
 using System.Threading;
@@ -31,7 +32,7 @@ namespace AlbankTodo.Application.Tasks.Commands.DeleteTask
             var task = await _taskRepository.GetTaskAsync(request.Id);
             if (task == null)
             {
-                throw new AlbankTodoException("NOT_FOUND", $"Task with Id {request.Id} not found.");
+                throw new AlbankTodoException(HttpStatusCode.NotFound, $"Task with Id {request.Id} not found.");
             }
             _taskRepository.DeleteTask(task);
             await _unitOfWork.Complete();

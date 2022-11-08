@@ -1,4 +1,5 @@
 using AlbankTodo.API.Helpers;
+using AlbankTodo.API.Middleware;
 using AlbankTodo.Application;
 using AlbankTodo.Infrastructure;
 using Microsoft.AspNetCore.Builder;
@@ -47,6 +48,8 @@ namespace AlbankTodo.API
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCustomExceptionHandler();
 
             app.UseSwagger();
             app.UseSwaggerUI(config =>
