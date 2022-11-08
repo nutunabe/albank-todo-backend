@@ -5,7 +5,6 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Threading.Tasks;
 using AlbankTodo.Application.Tasks.Queries;
 using AlbankTodo.Application.Tasks.Queries.GetTask;
-using AlbankTodo.API.Dtos;
 using AlbankTodo.Application.Tasks.Commands.CreateTask;
 using AlbankTodo.Application.Tasks.Commands.UpdateTask;
 using AlbankTodo.Application.Tasks.Commands.DeleteTask;
@@ -20,69 +19,62 @@ namespace AlbankTodo.API.Controllers
     [Route("api/[controller]")]
     public class TaskController : ControllerBase
     {
-        private IMediator _mediator;
-        protected IMediator Mediator =>
-            _mediator ??= HttpContext.RequestServices.GetService<IMediator>();
-        private readonly IMapper _mapper;
+        private readonly IMediator _mediator;
 
-        public TaskController(IMapper mapper)
+        public TaskController(IMapper mapper, IMediator mediator)
         {
-            _mapper = mapper;
+            _mediator = mediator;
         }
 
         [HttpPost]
-        public async Task<ActionResult<int>> Create([FromBody] CreateTaskDto createTaskDto)
+        public async Task<ActionResult<int>> Create([FromBody] CreateTaskRequest request)
         {
-            var command = _mapper.Map<CreateTaskRequest>(createTaskDto);
-            var res = await Mediator.Send(command);
+            var res = await _mediator.Send(request);
             return Ok(res);
         }
 
         [HttpPut]
-        public async Task<ActionResult> Update([FromBody] UpdateTaskDto updateTaskDto)
+        public async Task<ActionResult> Update([FromBody] UpdateTaskRequest request)
         {
-            var command = _mapper.Map<UpdateTaskRequest>(updateTaskDto);
-            var res = await Mediator.Send(command);
+            var res = await _mediator.Send(request);
             return Ok(res);
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<TaskDto>> Delete(int id)
         {
-            var command = new DeleteTaskRequest
+            var request = new DeleteTaskRequest
             {
                 Id = id,
             };
-            var res = await Mediator.Send(command);
+            var res = await _mediator.Send(request);
             return Ok(res);
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<TaskDto>> Get(int id)
         {
-            var query = new GetTaskRequest
+            var request = new GetTaskRequest
             {
                 Id = id,
             };
-            var res = await Mediator.Send(query);
+            var res = await _mediator.Send(request);
             return Ok(res);
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TaskDto>>> GetAll()
         {
-            var query = new GetTasksListRequest();
-            var res = await Mediator.Send(query);
+            var res = await _mediator.Send(new GetTasksListRequest());
             return Ok(res);
         }
 
         [HttpGet("page")]
-        public async Task<ActionResult<PageModel<TaskDto>>> GetPage([FromQuery] GetTasksPageDto tasksPageDto)
+        public async Task<ActionResult<PageModel<TaskDto>>> GetPage([FromQuery] GetTasksPageRequest request)
         {
-            tasksPageDto.PageNumber = tasksPageDto.PageNumber == 0 ? 1 : tasksPageDto.PageNumber;
-            tasksPageDto.PageSize = tasksPageDto.PageSize == 0 ? 10 : tasksPageDto.PageSize;
-            var command = _mapper.Map<GetTasksPageRequest>(tasksPageDto);
-            var res = await Mediator.Send(command);
+            request.PageNumber = request.PageNumber == 0 ? 1 : request.PageNumber;
+            request.PageSize = request.PageSize == 0 ? 10 : request.PageSize;
+            var res = await _mediator.Send(request);
             return Ok(res);
         }
     }

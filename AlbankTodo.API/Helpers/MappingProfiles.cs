@@ -1,5 +1,4 @@
-﻿using AlbankTodo.API.Dtos;
-using AlbankTodo.Application.Tasks.Commands.CreateTask;
+﻿using AlbankTodo.Application.Tasks.Commands.CreateTask;
 using AlbankTodo.Application.Tasks.Commands.UpdateTask;
 using AlbankTodo.Application.Tasks.Queries;
 using AlbankTodo.Application.Tasks.Queries.GetTasksPage;
@@ -15,9 +14,6 @@ namespace AlbankTodo.API.Helpers
             CreateMap<CreateTaskRequest, AlbankTask>();
             CreateMap<UpdateTaskRequest, AlbankTask>();
             CreateMap<AlbankTask, TaskDto>();
-            CreateMap<CreateTaskDto, CreateTaskRequest>();
-            CreateMap<UpdateTaskDto, UpdateTaskRequest>();
-            CreateMap<GetTasksPageDto, GetTasksPageRequest>();
         }
     }
 }

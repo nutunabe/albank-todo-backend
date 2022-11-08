@@ -1,6 +1,8 @@
 ﻿using AlbankTodo.Application.Common;
 using AlbankTodo.Core.Entities;
 using MediatR;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +16,9 @@ namespace AlbankTodo.Application.Tasks.Commands.UpdateTask
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+        [JsonConverter(typeof(CustomDateTimeConverter))]
         public DateTime DueDate { get; set; }
+        [JsonConverter(typeof(StringEnumConverter))]
         public Status Status { get; set; }
     }
 }
