@@ -14,5 +14,6 @@ namespace AlbankTodo.Core.Interfaces
         void UpdateTask(AlbankTask task);
         Task<AlbankTask> GetTaskAsync(int id);
         Task<IEnumerable<AlbankTask>> GetAllTasksAsync();
+        Task<(IEnumerable<AlbankTask>, int)> GetTasksPageAsync(int pageNumber, int pageSize);
     }
 }

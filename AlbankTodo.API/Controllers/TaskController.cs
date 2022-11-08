@@ -11,6 +11,8 @@ using AlbankTodo.Application.Tasks.Commands.UpdateTask;
 using AlbankTodo.Application.Tasks.Commands.DeleteTask;
 using AlbankTodo.Application.Tasks.Queries.GetTasksList;
 using System.Collections.Generic;
+using AlbankTodo.Application.Common;
+using AlbankTodo.Application.Tasks.Queries.GetTasksPage;
 
 namespace AlbankTodo.API.Controllers
 {
@@ -71,6 +73,14 @@ namespace AlbankTodo.API.Controllers
         {
             var query = new GetTasksListRequest();
             var res = await Mediator.Send(query);
+            return Ok(res);
+        }
+
+        [HttpPost("page")]
+        public async Task<ActionResult<PageModel<TaskDto>>> GetPage([FromBody] GetTasksPageDto tasksPageDto)
+        {
+            var command = _mapper.Map<GetTasksPageRequest>(tasksPageDto);
+            var res = await Mediator.Send(command);
             return Ok(res);
         }
     }
