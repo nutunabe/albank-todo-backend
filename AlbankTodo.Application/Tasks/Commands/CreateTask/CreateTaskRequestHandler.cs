@@ -29,7 +29,7 @@ namespace AlbankTodo.Application.Tasks.Commands.CreateTask
             task.Status = Status.CREATED;
             _taskRepository.AddTask(task);
             await _unitOfWork.Complete();
-            var response =  new ResponseModel
+            var response = new ResponseModel
             {
                 Result = "success",
             };

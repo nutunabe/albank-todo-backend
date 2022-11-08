@@ -30,7 +30,7 @@ namespace AlbankTodo.Application.Tasks.Commands.DeleteTask
             }
             _taskRepository.DeleteTask(task);
             await _unitOfWork.Complete();
-            var response =  new ResponseModel
+            var response = new ResponseModel
             {
                 Result = "success",
             };
