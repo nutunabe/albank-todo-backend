@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AlbankTodo.Application.Common;
+using System;
+using Newtonsoft.Json;
 
 namespace AlbankTodo.API.Dtos
 {
@@ -6,6 +8,7 @@ namespace AlbankTodo.API.Dtos
     {
         public string Title { get; set; }
         public string Description { get; set; }
+        [JsonConverter(typeof(CustomDateTimeConverter))]
         public DateTime DueDate { get; set; }
     }
 }
