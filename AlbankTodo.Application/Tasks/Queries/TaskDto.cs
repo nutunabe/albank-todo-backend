@@ -1,15 +1,8 @@
-﻿using AlbankTodo.Core.Entities;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AlbankTodo.Application.Common;
+using AlbankTodo.Core.Entities;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel;
-using AlbankTodo.Application.Common;
+using System;
 
 namespace AlbankTodo.Application.Tasks.Queries
 {

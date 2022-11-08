@@ -1,11 +1,7 @@
-﻿using AlbankTodo.Core.Entities;
-using AlbankTodo.Core.Interfaces;
+﻿using AlbankTodo.Core.Interfaces;
 using AutoMapper;
 using MediatR;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 

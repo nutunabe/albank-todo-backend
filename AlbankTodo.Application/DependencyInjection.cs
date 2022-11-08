@@ -1,8 +1,8 @@
-﻿using System.Reflection;
+﻿using AlbankTodo.Application.Common;
+using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using FluentValidation;
-using AlbankTodo.Application.Common;
+using System.Reflection;
 
 namespace AlbankTodo.Application
 {

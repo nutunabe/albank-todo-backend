@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AlbankTodo.Application.Common;
 using FluentValidation;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Net;
 using System.Text.Json;
-using AlbankTodo.Application.Common;
+using System.Threading.Tasks;
 
 namespace AlbankTodo.API.Middleware
 {

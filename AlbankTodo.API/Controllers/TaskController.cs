@@ -1,17 +1,15 @@
-﻿using AutoMapper;
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
-using System.Threading.Tasks;
+﻿using AlbankTodo.Application.Common;
+using AlbankTodo.Application.Tasks.Commands.CreateTask;
+using AlbankTodo.Application.Tasks.Commands.DeleteTask;
+using AlbankTodo.Application.Tasks.Commands.UpdateTask;
 using AlbankTodo.Application.Tasks.Queries;
 using AlbankTodo.Application.Tasks.Queries.GetTask;
-using AlbankTodo.Application.Tasks.Commands.CreateTask;
-using AlbankTodo.Application.Tasks.Commands.UpdateTask;
-using AlbankTodo.Application.Tasks.Commands.DeleteTask;
 using AlbankTodo.Application.Tasks.Queries.GetTasksList;
-using System.Collections.Generic;
-using AlbankTodo.Application.Common;
 using AlbankTodo.Application.Tasks.Queries.GetTasksPage;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace AlbankTodo.API.Controllers
 {
@@ -21,7 +19,7 @@ namespace AlbankTodo.API.Controllers
     {
         private readonly IMediator _mediator;
 
-        public TaskController(IMapper mapper, IMediator mediator)
+        public TaskController(IMediator mediator)
         {
             _mediator = mediator;
         }
