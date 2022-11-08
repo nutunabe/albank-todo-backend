@@ -76,8 +76,8 @@ namespace AlbankTodo.API.Controllers
             return Ok(res);
         }
 
-        [HttpPost("page")]
-        public async Task<ActionResult<PageModel<TaskDto>>> GetPage([FromBody] GetTasksPageDto tasksPageDto)
+        [HttpGet("page")]
+        public async Task<ActionResult<PageModel<TaskDto>>> GetPage([FromQuery] GetTasksPageDto tasksPageDto)
         {
             var command = _mapper.Map<GetTasksPageRequest>(tasksPageDto);
             var res = await Mediator.Send(command);
