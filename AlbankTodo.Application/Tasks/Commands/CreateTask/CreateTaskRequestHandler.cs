@@ -1,4 +1,5 @@
-﻿using AlbankTodo.Core.Entities;
+﻿using AlbankTodo.Application.Common;
+using AlbankTodo.Core.Entities;
 using AlbankTodo.Core.Interfaces;
 using AutoMapper;
 using MediatR;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace AlbankTodo.Application.Tasks.Commands.CreateTask
 {
-    public class CreateTaskRequestHandler : IRequestHandler<CreateTaskRequest>
+    public class CreateTaskRequestHandler : IRequestHandler<CreateTaskRequest, ResponseModel>
     {
         private readonly ITaskRepository _taskRepository;
         private readonly IUnitOfWork _unitOfWork;
@@ -25,14 +26,18 @@ namespace AlbankTodo.Application.Tasks.Commands.CreateTask
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<Unit> Handle(CreateTaskRequest request, CancellationToken cancellationToken)
+        public async Task<ResponseModel> Handle(CreateTaskRequest request, CancellationToken cancellationToken)
         {
             var task = _mapper.Map<AlbankTask>(request);
             task.CreatedOn = DateTime.Now;
             task.Status = Status.CREATED;
             _taskRepository.AddTask(task);
             await _unitOfWork.Complete();
-            return new Unit();
+            var response =  new ResponseModel
+            {
+                Result = "success",
+            };
+            return response;
         }
     }
 }

@@ -34,16 +34,16 @@ namespace AlbankTodo.API.Controllers
         public async Task<ActionResult<int>> Create([FromBody] CreateTaskDto createTaskDto)
         {
             var command = _mapper.Map<CreateTaskRequest>(createTaskDto);
-            await Mediator.Send(command);
-            return NoContent();
+            var res = await Mediator.Send(command);
+            return Ok(res);
         }
 
         [HttpPut]
         public async Task<ActionResult> Update([FromBody] UpdateTaskDto updateTaskDto)
         {
             var command = _mapper.Map<UpdateTaskRequest>(updateTaskDto);
-            await Mediator.Send(command);
-            return NoContent();
+            var res = await Mediator.Send(command);
+            return Ok(res);
         }
 
         [HttpDelete("{id}")]
@@ -53,8 +53,8 @@ namespace AlbankTodo.API.Controllers
             {
                 Id = id,
             };
-            await Mediator.Send(command);
-            return NoContent();
+            var res = await Mediator.Send(command);
+            return Ok(res);
         }
 
         [HttpGet("{id}")]

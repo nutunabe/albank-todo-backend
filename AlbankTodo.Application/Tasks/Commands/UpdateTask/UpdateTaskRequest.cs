@@ -1,4 +1,5 @@
-﻿using AlbankTodo.Core.Entities;
+﻿using AlbankTodo.Application.Common;
+using AlbankTodo.Core.Entities;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AlbankTodo.Application.Tasks.Commands.UpdateTask
 {
-    public class UpdateTaskRequest : IRequest
+    public class UpdateTaskRequest : IRequest<ResponseModel>
     {
         public int Id { get; set; }
         public string Title { get; set; }

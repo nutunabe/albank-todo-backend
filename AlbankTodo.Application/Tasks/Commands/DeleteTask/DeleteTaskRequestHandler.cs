@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace AlbankTodo.Application.Tasks.Commands.DeleteTask
 {
-    public class DeleteTaskRequestHandler : IRequestHandler<DeleteTaskRequest>
+    public class DeleteTaskRequestHandler : IRequestHandler<DeleteTaskRequest, ResponseModel>
     {
         private readonly ITaskRepository _taskRepository;
         private readonly IUnitOfWork _unitOfWork;
@@ -26,7 +26,7 @@ namespace AlbankTodo.Application.Tasks.Commands.DeleteTask
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<Unit> Handle(DeleteTaskRequest request, CancellationToken cancellationToken)
+        public async Task<ResponseModel> Handle(DeleteTaskRequest request, CancellationToken cancellationToken)
         {
             var task = await _taskRepository.GetTaskAsync(request.Id);
             if (task == null)
@@ -35,7 +35,11 @@ namespace AlbankTodo.Application.Tasks.Commands.DeleteTask
             }
             _taskRepository.DeleteTask(task);
             await _unitOfWork.Complete();
-            return new Unit();
+            var response =  new ResponseModel
+            {
+                Result = "success",
+            };
+            return response;
         }
     }
 }
