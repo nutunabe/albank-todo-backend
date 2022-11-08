@@ -1,10 +1,12 @@
 ﻿using AlbankTodo.Application.Common;
 using AlbankTodo.Core.Interfaces;
+using AlbankTodo.Core.Entities;
 using AutoMapper;
 using MediatR;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using System;
 
 namespace AlbankTodo.Application.Tasks.Commands.UpdateTask
 {
@@ -29,6 +31,10 @@ namespace AlbankTodo.Application.Tasks.Commands.UpdateTask
                 throw new AlbankTodoException(HttpStatusCode.NotFound, $"Task with Id {request.Id} not found.");
             }
             _mapper.Map(request, task);
+            if (task.Status == Status.COMPLETED)
+            {
+                task.CompletedOn = DateTime.Now;
+            }
             _taskRepository.UpdateTask(task);
             await _unitOfWork.Complete();
             var response = new ResponseModel
