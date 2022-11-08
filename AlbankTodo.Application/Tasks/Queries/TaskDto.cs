@@ -16,7 +16,7 @@ namespace AlbankTodo.Application.Tasks.Queries
         [JsonConverter(typeof(CustomDateTimeConverter))]
         public DateTime CreatedOn { get; set; }
         [JsonConverter(typeof(CustomDateTimeConverter))]
-        public DateTime CompletedOn { get; set; }
+        public DateTime? CompletedOn { get; set; }
         [JsonConverter(typeof(StringEnumConverter))]
         public Status Status { get; set; }
     }

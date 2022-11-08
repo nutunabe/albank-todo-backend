@@ -10,7 +10,7 @@ namespace AlbankTodo.Core.Entities
         public string Description { get; set; }
         public DateTime DueDate { get; set; }
         public DateTime CreatedOn { get; set; }
-        public DateTime CompletedOn { get; set; }
+        public DateTime? CompletedOn { get; set; }
         public Status Status { get; set; }
     }
 }
