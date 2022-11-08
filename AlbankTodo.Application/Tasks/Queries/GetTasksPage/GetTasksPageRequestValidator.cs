@@ -11,8 +11,8 @@ namespace AlbankTodo.Application.Tasks.Queries.GetTasksPage
     {
         public GetTasksPageRequestValidator()
         {
-            //RuleFor(getTasksPageRequest => getTasksPageRequest.PageNumber).GreaterThan(0);
-            //RuleFor(getTasksPageRequest => getTasksPageRequest.PageSize).GreaterThan(0);
+            RuleFor(getTasksPageRequest => getTasksPageRequest.PageNumber).GreaterThanOrEqualTo(1);
+            RuleFor(getTasksPageRequest => getTasksPageRequest.PageSize).GreaterThanOrEqualTo(1);
         }
     }
 }

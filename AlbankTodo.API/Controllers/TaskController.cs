@@ -79,6 +79,8 @@ namespace AlbankTodo.API.Controllers
         [HttpGet("page")]
         public async Task<ActionResult<PageModel<TaskDto>>> GetPage([FromQuery] GetTasksPageDto tasksPageDto)
         {
+            tasksPageDto.PageNumber = tasksPageDto.PageNumber == 0 ? 1 : tasksPageDto.PageNumber;
+            tasksPageDto.PageSize = tasksPageDto.PageSize == 0 ? 10 : tasksPageDto.PageSize;
             var command = _mapper.Map<GetTasksPageRequest>(tasksPageDto);
             var res = await Mediator.Send(command);
             return Ok(res);
