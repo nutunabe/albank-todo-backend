@@ -1,4 +1,4 @@
-﻿using AlbankTodo.Application.Tasks.Queries;
+﻿using AlbankTodo.Application.Common;
 using AlbankTodo.Application.Tasks.Queries.GetTask;
 using AlbankTodo.Core.Entities;
 using AlbankTodo.Tests.Common;
@@ -33,7 +33,7 @@ namespace AlbankTodo.Tests.Tasks.Queries
             result.DueDate.ShouldBe(new DateTime(2022, 11, 10));
             result.CreatedOn.ShouldBe(DateTime.Today);
             result.CompletedOn.ShouldBeNull();
-            result.Status.ShouldBe(Status.CREATED);
+            result.Status.ShouldBe(Status.Created);
         }
     }
 }

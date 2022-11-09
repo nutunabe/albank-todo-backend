@@ -27,7 +27,7 @@ namespace AlbankTodo.Tests.Common
                     DueDate = new DateTime(2022, 11, 10),
                     CreatedOn = DateTime.Today,
                     CompletedOn = null,
-                    Status = Status.CREATED
+                    Status = Status.Created
                 },
                 new AlbankTask
                 {
@@ -37,7 +37,7 @@ namespace AlbankTodo.Tests.Common
                     DueDate = new DateTime(2022, 11, 10),
                     CreatedOn = DateTime.Today,
                     CompletedOn = null,
-                    Status = Status.CREATED
+                    Status = Status.Created
                 },
                 new AlbankTask
                 {
@@ -47,7 +47,7 @@ namespace AlbankTodo.Tests.Common
                     DueDate = new DateTime(2022, 11, 10),
                     CreatedOn = DateTime.Today,
                     CompletedOn = null,
-                    Status = Status.CREATED
+                    Status = Status.Created
                 },
                 new AlbankTask
                 {
@@ -57,7 +57,7 @@ namespace AlbankTodo.Tests.Common
                     DueDate = new DateTime(2022, 11, 10),
                     CreatedOn = DateTime.Today,
                     CompletedOn = null,
-                    Status = Status.CREATED
+                    Status = Status.Created
                 }
                 );
             context.SaveChanges();

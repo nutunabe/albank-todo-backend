@@ -37,5 +37,24 @@ namespace AlbankTodo.Infrastructure.Repositories
             var tasks = await _dbSet.Skip(pageNumber * pageSize).Take(pageSize).ToListAsync();
             return (tasks, count);
         }
+
+        public async Task<AlbankTask> GetRecycledTaskAsync(int id)
+        {
+            return await _dbSet.IgnoreQueryFilters().Where(x => x.IsRecycled).FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public async Task<IEnumerable<AlbankTask>> GetAllRecycledTasksAsync()
+        {
+            return await _dbSet.IgnoreQueryFilters().Where(x => x.IsRecycled).ToListAsync();
+        }
+
+        public void DeleteAllRecycledTasks() =>
+            _dbSet.RemoveRange(_dbSet.IgnoreQueryFilters().Where(x => x.IsRecycled));
+
+        public void RestoreAllRecycledTasks()
+        {
+            var recycledTasks = _dbSet.IgnoreQueryFilters().Where(x => x.IsRecycled).ToList();
+            recycledTasks.ForEach(x => x.IsRecycled = false);
+        }
     }
 }

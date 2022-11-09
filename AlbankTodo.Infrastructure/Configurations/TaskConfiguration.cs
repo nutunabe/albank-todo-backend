@@ -15,6 +15,7 @@ namespace AlbankTodo.Infrastructure.Configurations
             builder.Property(task => task.CreatedOn);
             builder.Property(task => task.CompletedOn);
             builder.Property(task => task.Status);
+            builder.Property(task => task.IsRecycled).HasDefaultValue(false);
         }
     }
 }

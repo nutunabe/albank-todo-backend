@@ -2,7 +2,7 @@
 
 namespace AlbankTodo.Core.Entities
 {
-    public enum Status { CREATED, IN_PROGRESS, COMPLETED }
+    public enum Status { Created, InProgress, Completed }
     public class AlbankTask
     {
         public int Id { get; set; }
@@ -12,5 +12,6 @@ namespace AlbankTodo.Core.Entities
         public DateTime CreatedOn { get; set; }
         public DateTime? CompletedOn { get; set; }
         public Status Status { get; set; }
+        public bool IsRecycled { get; set; }
     }
 }

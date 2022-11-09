@@ -12,5 +12,9 @@ namespace AlbankTodo.Core.Interfaces
         Task<AlbankTask> GetTaskAsync(int id);
         Task<IEnumerable<AlbankTask>> GetAllTasksAsync();
         Task<(IEnumerable<AlbankTask>, int)> GetTasksPageAsync(int pageNumber, int pageSize);
+        Task<AlbankTask> GetRecycledTaskAsync(int id);
+        Task<IEnumerable<AlbankTask>> GetAllRecycledTasksAsync();
+        void DeleteAllRecycledTasks();
+        void RestoreAllRecycledTasks();
     }
 }

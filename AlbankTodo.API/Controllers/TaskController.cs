@@ -2,7 +2,6 @@
 using AlbankTodo.Application.Tasks.Commands.CreateTask;
 using AlbankTodo.Application.Tasks.Commands.DeleteTask;
 using AlbankTodo.Application.Tasks.Commands.UpdateTask;
-using AlbankTodo.Application.Tasks.Queries;
 using AlbankTodo.Application.Tasks.Queries.GetTask;
 using AlbankTodo.Application.Tasks.Queries.GetTasksList;
 using AlbankTodo.Application.Tasks.Queries.GetTasksPage;

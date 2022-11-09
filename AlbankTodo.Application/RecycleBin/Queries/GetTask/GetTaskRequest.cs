@@ -1,7 +1,7 @@
 ﻿using AlbankTodo.Application.Common;
 using MediatR;
 
-namespace AlbankTodo.Application.Tasks.Queries.GetTask
+namespace AlbankTodo.Application.RecycleBin.Queries.GetTask
 {
     public class GetTaskRequest : IRequest<TaskDto>
     {

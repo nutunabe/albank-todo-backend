@@ -20,7 +20,7 @@ namespace AlbankTodo.Tests.Tasks.Commands
             var taskTitle = "updated task name";
             var taskDescription = "updated task description";
             var taskDueDate = new DateTime(2024, 12, 31);
-            var taskStatus = Status.IN_PROGRESS;
+            var taskStatus = Status.InProgress;
 
             // Act
             await handler.Handle(new UpdateTaskRequest

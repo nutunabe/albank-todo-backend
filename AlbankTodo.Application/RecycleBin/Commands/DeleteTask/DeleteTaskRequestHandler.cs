@@ -6,7 +6,7 @@ using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace AlbankTodo.Application.Tasks.Commands.DeleteTask
+namespace AlbankTodo.Application.RecycleBin.Commands.DeleteTask
 {
     public class DeleteTaskRequestHandler : IRequestHandler<DeleteTaskRequest, ResponseModel>
     {
@@ -23,14 +23,13 @@ namespace AlbankTodo.Application.Tasks.Commands.DeleteTask
 
         public async Task<ResponseModel> Handle(DeleteTaskRequest request, CancellationToken cancellationToken)
         {
-            var task = await _taskRepository.GetTaskAsync(request.Id);
+            var task = await _taskRepository.GetRecycledTaskAsync(request.Id);
             if (task == null)
             {
-                throw new AlbankTodoException(HttpStatusCode.NotFound, $"Task with Id {request.Id} not found.");
+                throw new AlbankTodoException(HttpStatusCode.NotFound, $"Task with Id {request.Id} not found in recycle bin.");
             }
-            task.IsRecycled = true;
-            _taskRepository.UpdateTask(task);
-            //_taskRepository.DeleteTask(task);
+            task.IsRecycled = false;
+            _taskRepository.DeleteTask(task);
             await _unitOfWork.Complete();
             var response = new ResponseModel
             {

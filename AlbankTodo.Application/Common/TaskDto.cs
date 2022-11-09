@@ -1,10 +1,9 @@
-﻿using AlbankTodo.Application.Common;
-using AlbankTodo.Core.Entities;
+﻿using AlbankTodo.Core.Entities;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
 
-namespace AlbankTodo.Application.Tasks.Queries
+namespace AlbankTodo.Application.Common
 {
     public class TaskDto
     {

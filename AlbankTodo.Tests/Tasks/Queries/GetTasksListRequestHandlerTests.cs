@@ -1,4 +1,4 @@
-﻿using AlbankTodo.Application.Tasks.Queries;
+﻿using AlbankTodo.Application.Common;
 using AlbankTodo.Application.Tasks.Queries.GetTasksList;
 using AlbankTodo.Tests.Common;
 using Shouldly;

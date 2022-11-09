@@ -1,6 +1,6 @@
-﻿using AlbankTodo.Application.Tasks.Commands.CreateTask;
+﻿using AlbankTodo.Application.Common;
+using AlbankTodo.Application.Tasks.Commands.CreateTask;
 using AlbankTodo.Application.Tasks.Commands.UpdateTask;
-using AlbankTodo.Application.Tasks.Queries;
 using AlbankTodo.Core.Entities;
 using AutoMapper;
 
