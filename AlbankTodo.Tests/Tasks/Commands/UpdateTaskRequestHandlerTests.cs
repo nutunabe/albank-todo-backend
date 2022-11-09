@@ -23,7 +23,7 @@ namespace AlbankTodo.Tests.Tasks.Commands
             var taskStatus = Status.InProgress;
 
             // Act
-            await handler.Handle(new UpdateTaskRequest
+            var response = await handler.Handle(new UpdateTaskRequest
             {
                 Id = taskId,
                 Title = taskTitle,
@@ -31,14 +31,14 @@ namespace AlbankTodo.Tests.Tasks.Commands
                 DueDate = taskDueDate,
                 Status = taskStatus,
             }, CancellationToken.None);
+            var task = response.Result;
 
             // Assert
-            var task = await Repository.GetTaskAsync(taskId);
             Assert.NotNull(task);
             Assert.Equal(taskTitle, task.Title);
             Assert.Equal(taskDescription, task.Description);
             Assert.Equal(taskDueDate, task.DueDate);
-            Assert.Equal(DateTime.Today, task.CreatedOn); // ? ? ?
+            Assert.Equal(DateTime.Today, task.CreatedOn);
             Assert.Equal(taskStatus, task.Status);
         }
 

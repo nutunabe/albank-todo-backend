@@ -19,21 +19,22 @@ namespace AlbankTodo.Tests.Tasks.Queries
             var handler = new GetTaskRequestHandler(Repository, Mapper);
 
             // Act
-            var result = await handler.Handle(
+            var response = await handler.Handle(
                 new GetTaskRequest
                 {
                     Id = 1,
                 }, CancellationToken.None);
+            var task = response.Result;
 
             // Assert
-            result.ShouldBeOfType<TaskDto>();
-            result.Id.ShouldBe(1);
-            result.Title.ShouldBe("Title 1");
-            result.Description.ShouldBe("Description 1");
-            result.DueDate.ShouldBe(new DateTime(2022, 11, 10));
-            result.CreatedOn.ShouldBe(DateTime.Today);
-            result.CompletedOn.ShouldBeNull();
-            result.Status.ShouldBe(Status.Created);
+            task.ShouldBeOfType<TaskDto>();
+            task.Id.ShouldBe(1);
+            task.Title.ShouldBe("Title 1");
+            task.Description.ShouldBe("Description 1");
+            task.DueDate.ShouldBe(new DateTime(2022, 11, 10));
+            task.CreatedOn.ShouldBe(DateTime.Today);
+            task.CompletedOn.ShouldBeNull();
+            task.Status.ShouldBe(Status.Created);
         }
     }
 }

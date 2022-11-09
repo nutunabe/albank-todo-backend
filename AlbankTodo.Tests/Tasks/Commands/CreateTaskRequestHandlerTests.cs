@@ -1,5 +1,7 @@
 ﻿using AlbankTodo.Application.Tasks.Commands.CreateTask;
+using AlbankTodo.Core.Entities;
 using AlbankTodo.Tests.Common;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading;
@@ -20,25 +22,20 @@ namespace AlbankTodo.Tests.Tasks.Commands
             var taskDueDate = new DateTime(2023, 12, 31);
 
             // Act
-            await handler.Handle(new CreateTaskRequest
+            var response = await handler.Handle(new CreateTaskRequest
             {
                 Title = taskTitle,
                 Description = taskDescription,
                 DueDate = taskDueDate,
             }, CancellationToken.None);
-
-            var tasks = await Repository.GetAllTasksAsync();
-            var taskId = tasks.Last().Id;
+            var task = response.Result;
 
             // Assert
-            var task = await Repository.GetTaskAsync(taskId);
             Assert.NotNull(task);
             Assert.Equal(taskTitle, task.Title);
             Assert.Equal(taskDescription, task.Description);
             Assert.Equal(taskDueDate, task.DueDate);
             Assert.Equal(DateTime.Today, task.CreatedOn.Date); // ? ? ?
-
-            TasksContextFactory.TaskIdForUpdate = taskId;
         }
     }
 }
