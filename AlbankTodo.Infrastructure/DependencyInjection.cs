@@ -12,10 +12,10 @@ namespace AlbankTodo.Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
-            //var connString = configuration["DbConnection"];
-            var connString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
+            var envConnString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
+            var confConnString = configuration["DbConnection"];
+            var connString = envConnString != null ? envConnString : confConnString;
             services.AddDbContext<AlbankTodoContext>(options => options.UseNpgsql(connString));
-            //services.AddScoped<IAlbankTodoContext>(provider => provider.GetService<AlbankTodoContext>());
             services.AddScoped<ITaskRepository, TaskRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             return services;

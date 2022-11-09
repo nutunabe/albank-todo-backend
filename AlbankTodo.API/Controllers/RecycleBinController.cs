@@ -24,57 +24,51 @@ namespace AlbankTodo.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<TaskDto>> Delete(int id)
+        public async Task<ResponseModel> Delete(int id)
         {
             var request = new DeleteTaskRequest
             {
                 Id = id,
             };
-            var res = await _mediator.Send(request);
-            return Ok(res);
+            return await _mediator.Send(request);
         }
 
         [HttpDelete()]
-        public async Task<ActionResult<TaskDto>> DeleteAll()
+        public async Task<ResponseModel> DeleteAll()
         {
-            var res = await _mediator.Send(new EmptyRecycleBinRequest());
-            return Ok(res);
+            return await _mediator.Send(new EmptyRecycleBinRequest());
         }
 
         [HttpPut("restore/{id}")]
-        public async Task<ActionResult<TaskDto>> Restore(int id)
+        public async Task<ResponseModel<TaskDto>> Restore(int id)
         {
             var request = new RestoreTaskRequest
             {
                 Id = id,
             };
-            var res = await _mediator.Send(request);
-            return Ok(res);
+            return await _mediator.Send(request);
         }
 
         [HttpPut("restore")]
-        public async Task<ActionResult<TaskDto>> RestoreAll()
+        public async Task<ResponseModel> RestoreAll()
         {
-            var res = await _mediator.Send(new RestoreAllTasksRequest());
-            return Ok(res);
+            return await _mediator.Send(new RestoreAllTasksRequest());
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<TaskDto>> Get(int id)
+        public async Task<ResponseModel<TaskDto>> Get(int id)
         {
             var request = new GetTaskRequest
             {
                 Id = id,
             };
-            var res = await _mediator.Send(request);
-            return Ok(res);
+            return await _mediator.Send(request);
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<TaskDto>>> GetAll()
+        public async Task<IEnumerable<TaskDto>> GetAll()
         {
-            var res = await _mediator.Send(new GetTasksListRequest());
-            return Ok(res);
+            return await _mediator.Send(new GetTasksListRequest());
         }
     }
 }

@@ -34,7 +34,7 @@ namespace AlbankTodo.Infrastructure.Repositories
         public async Task<(IEnumerable<AlbankTask>, int)> GetTasksPageAsync(int pageNumber, int pageSize)
         {
             var count = await _dbSet.CountAsync();
-            var tasks = await _dbSet.Skip(pageNumber * pageSize).Take(pageSize).ToListAsync();
+            var tasks = await _dbSet.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
             return (tasks, count);
         }
 

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AlbankTodo.Application.RecycleBin.Commands.RestoreTask
 {
-    public class RestoreTaskRequestHandler : IRequestHandler<RestoreTaskRequest, ResponseModel>
+    public class RestoreTaskRequestHandler : IRequestHandler<RestoreTaskRequest, ResponseModel<TaskDto>>
     {
         private readonly ITaskRepository _taskRepository;
         private readonly IUnitOfWork _unitOfWork;
@@ -21,7 +21,7 @@ namespace AlbankTodo.Application.RecycleBin.Commands.RestoreTask
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<ResponseModel> Handle(RestoreTaskRequest request, CancellationToken cancellationToken)
+        public async Task<ResponseModel<TaskDto>> Handle(RestoreTaskRequest request, CancellationToken cancellationToken)
         {
             var task = await _taskRepository.GetRecycledTaskAsync(request.Id);
             if (task == null)
@@ -31,11 +31,8 @@ namespace AlbankTodo.Application.RecycleBin.Commands.RestoreTask
             task.IsRecycled = false;
             _taskRepository.UpdateTask(task);
             await _unitOfWork.Complete();
-            var response = new ResponseModel
-            {
-                Result = "success",
-            };
-            return response;
+            var result = _mapper.Map<TaskDto>(task);
+            return new ResponseModel<TaskDto>(result);
         }
     }
 }

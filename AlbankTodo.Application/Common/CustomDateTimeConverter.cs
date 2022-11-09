@@ -6,7 +6,7 @@ namespace AlbankTodo.Application.Common
     {
         public CustomDateTimeConverter()
         {
-            DateTimeFormat = "dd.MM.yyyy";
+            DateTimeFormat = "yyyy-MM-dd";
         }
 
         public CustomDateTimeConverter(string format)

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AlbankTodo.Application.Tasks.Commands.CreateTask
 {
-    public class CreateTaskRequestHandler : IRequestHandler<CreateTaskRequest, ResponseModel>
+    public class CreateTaskRequestHandler : IRequestHandler<CreateTaskRequest, ResponseModel<TaskDto>>
     {
         private readonly ITaskRepository _taskRepository;
         private readonly IUnitOfWork _unitOfWork;
@@ -22,18 +22,15 @@ namespace AlbankTodo.Application.Tasks.Commands.CreateTask
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<ResponseModel> Handle(CreateTaskRequest request, CancellationToken cancellationToken)
+        public async Task<ResponseModel<TaskDto>> Handle(CreateTaskRequest request, CancellationToken cancellationToken)
         {
             var task = _mapper.Map<AlbankTask>(request);
             task.CreatedOn = DateTime.Now;
             task.Status = Status.Created;
             _taskRepository.AddTask(task);
             await _unitOfWork.Complete();
-            var response = new ResponseModel
-            {
-                Result = "success",
-            };
-            return response;
+            var result = _mapper.Map<TaskDto>(task);
+            return new ResponseModel<TaskDto>(result);
         }
     }
 }

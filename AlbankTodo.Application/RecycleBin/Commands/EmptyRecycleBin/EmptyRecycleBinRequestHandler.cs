@@ -24,11 +24,7 @@ namespace AlbankTodo.Application.RecycleBin.Commands.EmptyRecycleBin
         {
             _taskRepository.DeleteAllRecycledTasks();
             await _unitOfWork.Complete();
-            var response = new ResponseModel
-            {
-                Result = "success",
-            };
-            return response;
+            return new ResponseModel();
         }
     }
 }

@@ -31,11 +31,7 @@ namespace AlbankTodo.Application.RecycleBin.Commands.DeleteTask
             task.IsRecycled = false;
             _taskRepository.DeleteTask(task);
             await _unitOfWork.Complete();
-            var response = new ResponseModel
-            {
-                Result = "success",
-            };
-            return response;
+            return new ResponseModel();
         }
     }
 }

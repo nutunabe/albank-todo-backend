@@ -24,39 +24,35 @@ namespace AlbankTodo.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<int>> Create([FromBody] CreateTaskRequest request)
+        public async Task<ResponseModel<TaskDto>> Create([FromBody] CreateTaskRequest request)
         {
-            var res = await _mediator.Send(request);
-            return Ok(res);
+            return await _mediator.Send(request);
         }
 
         [HttpPut]
-        public async Task<ActionResult> Update([FromBody] UpdateTaskRequest request)
+        public async Task<ResponseModel<TaskDto>> Update([FromBody] UpdateTaskRequest request)
         {
-            var res = await _mediator.Send(request);
-            return Ok(res);
+            return await _mediator.Send(request);
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<TaskDto>> Delete(int id)
+        public async Task<ResponseModel> Delete(int id)
         {
             var request = new DeleteTaskRequest
             {
                 Id = id,
             };
-            var res = await _mediator.Send(request);
-            return Ok(res);
+            return await _mediator.Send(request);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<TaskDto>> Get(int id)
+        public async Task<ResponseModel<TaskDto>> Get(int id)
         {
             var request = new GetTaskRequest
             {
                 Id = id,
             };
-            var res = await _mediator.Send(request);
-            return Ok(res);
+            return await _mediator.Send(request);
         }
 
         [HttpGet]
@@ -67,12 +63,9 @@ namespace AlbankTodo.API.Controllers
         }
 
         [HttpGet("page")]
-        public async Task<ActionResult<PageModel<TaskDto>>> GetPage([FromQuery] GetTasksPageRequest request)
+        public async Task<PageModel<TaskDto>> GetPage([FromQuery] GetTasksPageRequest request)
         {
-            request.PageNumber = request.PageNumber == 0 ? 1 : request.PageNumber;
-            request.PageSize = request.PageSize == 0 ? 10 : request.PageSize;
-            var res = await _mediator.Send(request);
-            return Ok(res);
+            return await _mediator.Send(request);
         }
     }
 }

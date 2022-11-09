@@ -1,8 +1,21 @@
 ﻿
 namespace AlbankTodo.Application.Common
 {
+    public class ResponseModel<T> : ResponseModel
+    {
+        public T Result { get; set; }
+
+        public ResponseModel(T result)
+        {
+            Result = result;
+        }
+    }
+
     public class ResponseModel
     {
-        public string Result { get; set; }
+        public bool Success { get; set; } = true;
+
+        public ResponseModel()
+        { }
     }
 }

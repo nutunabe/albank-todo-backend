@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace AlbankTodo.Application.Tasks.Commands.UpdateTask
 {
-    public class UpdateTaskRequestHandler : IRequestHandler<UpdateTaskRequest, ResponseModel>
+    public class UpdateTaskRequestHandler : IRequestHandler<UpdateTaskRequest, ResponseModel<TaskDto>>
     {
         private readonly ITaskRepository _taskRepository;
         private readonly IUnitOfWork _unitOfWork;
@@ -23,7 +23,7 @@ namespace AlbankTodo.Application.Tasks.Commands.UpdateTask
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<ResponseModel> Handle(UpdateTaskRequest request, CancellationToken cancellationToken)
+        public async Task<ResponseModel<TaskDto>> Handle(UpdateTaskRequest request, CancellationToken cancellationToken)
         {
             var task = await _taskRepository.GetTaskAsync(request.Id);
             if (task == null)
@@ -37,11 +37,8 @@ namespace AlbankTodo.Application.Tasks.Commands.UpdateTask
             }
             _taskRepository.UpdateTask(task);
             await _unitOfWork.Complete();
-            var response = new ResponseModel
-            {
-                Result = "success",
-            };
-            return response;
+            var result = _mapper.Map<TaskDto>(task);
+            return new ResponseModel<TaskDto>(result);
         }
     }
 }
