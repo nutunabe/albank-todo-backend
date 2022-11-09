@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlbankTodo.Core", "AlbankTodo.Core\AlbankTodo.Core.csproj", "{976C911D-10F7-46EF-B699-66DA426F41E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlbankTodo.Core", "AlbankTodo.Core\AlbankTodo.Core.csproj", "{976C911D-10F7-46EF-B699-66DA426F41E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlbankTodo.Infrastructure", "AlbankTodo.Infrastructure\AlbankTodo.Infrastructure.csproj", "{446B10F3-A899-439B-BA3C-CE4684BC8A25}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlbankTodo.Infrastructure", "AlbankTodo.Infrastructure\AlbankTodo.Infrastructure.csproj", "{446B10F3-A899-439B-BA3C-CE4684BC8A25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlbankTodo.Application", "AlbankTodo.Application\AlbankTodo.Application.csproj", "{589DCB1F-18A9-404E-9619-B695F6163653}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlbankTodo.Application", "AlbankTodo.Application\AlbankTodo.Application.csproj", "{589DCB1F-18A9-404E-9619-B695F6163653}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlbankTodo.API", "AlbankTodo.API\AlbankTodo.API.csproj", "{F6CCEEBD-799F-4B97-9686-87DA9E48E1EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlbankTodo.API", "AlbankTodo.API\AlbankTodo.API.csproj", "{F6CCEEBD-799F-4B97-9686-87DA9E48E1EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlbankTodo.Tests", "AlbankTodo.Tests\AlbankTodo.Tests.csproj", "{19F20D7D-F50E-45A2-B4ED-5D0FB5F5EE1B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{F6CCEEBD-799F-4B97-9686-87DA9E48E1EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6CCEEBD-799F-4B97-9686-87DA9E48E1EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6CCEEBD-799F-4B97-9686-87DA9E48E1EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19F20D7D-F50E-45A2-B4ED-5D0FB5F5EE1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19F20D7D-F50E-45A2-B4ED-5D0FB5F5EE1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19F20D7D-F50E-45A2-B4ED-5D0FB5F5EE1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19F20D7D-F50E-45A2-B4ED-5D0FB5F5EE1B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
