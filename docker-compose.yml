@@ -7,7 +7,7 @@ networks:
 services:
   api:
     container_name: 'albanktodoapi'
-    image: albanktodoapi
+    image: nutunabe/albanktodoapi:latest
     depends_on:
       - "postgres"
     build:
@@ -22,7 +22,7 @@ services:
   
   postgres:
     container_name: 'postgres'
-    image: postgres
+    image: postgres:latest
     ports:
       - "5432"
     restart: always

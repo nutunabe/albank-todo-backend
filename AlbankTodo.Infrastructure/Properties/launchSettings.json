@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "AlbankTodo.Infrastructure": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:65093;http://localhost:65094"
+    }
+  }
+}
