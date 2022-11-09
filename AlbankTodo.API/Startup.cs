@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
+using System;
 
 namespace AlbankTodo.API
 {
@@ -15,12 +16,15 @@ namespace AlbankTodo.API
     {
         public IConfiguration configuration { get; }
 
-        public Startup(IConfiguration configuration) => this.configuration = configuration;
+        public Startup(IConfiguration configuration)
+        {
+            this.configuration = configuration;
+        }
 
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAutoMapper(typeof(MappingProfiles));
-
+            
             services.AddInfrastructure(configuration);
             services.AddApplication();
             services.AddControllers().AddNewtonsoftJson(options =>

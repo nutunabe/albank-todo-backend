@@ -1,0 +1,38 @@
+version: '3.7'
+
+networks:
+  webapi-network:
+    driver: bridge 
+
+services:
+  api:
+    container_name: 'albanktodoapi'
+    image: albanktodoapi
+    depends_on:
+      - "postgres"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:80"     
+    environment:
+      DB_CONNECTION_STRING: "host=postgres;port=5432;database=tododb;username=postgres;password=1"
+    networks:
+      - webapi-network  
+  
+  postgres:
+    container_name: 'postgres'
+    image: postgres
+    ports:
+      - "5432"
+    restart: always
+    volumes:
+      - ./seed.sql:/docker-entrypoint-initdb.d/seed.sql
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "1"
+      POSTGRES_DB: "tododb"
+    networks:
+      - webapi-network
+#volumes:
+#  dbscripts:
