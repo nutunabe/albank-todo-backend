@@ -1,10 +1,10 @@
 ﻿using AlbankTodo.Application.Common;
-using AlbankTodo.Application.RecycleBin.Queries.GetTask;
-using AlbankTodo.Application.RecycleBin.Queries.GetTasksList;
 using AlbankTodo.Application.RecycleBin.Commands.DeleteTask;
-using AlbankTodo.Application.RecycleBin.Commands.RestoreTask;
 using AlbankTodo.Application.RecycleBin.Commands.EmptyRecycleBin;
 using AlbankTodo.Application.RecycleBin.Commands.RestoreAllTasks;
+using AlbankTodo.Application.RecycleBin.Commands.RestoreTask;
+using AlbankTodo.Application.RecycleBin.Queries.GetTask;
+using AlbankTodo.Application.RecycleBin.Queries.GetTasksList;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
