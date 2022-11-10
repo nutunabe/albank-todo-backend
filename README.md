@@ -64,11 +64,13 @@ http://localhost:8000/api/task
   "id": 1,
   "title": "updated title",
   "description": "updated description",
-  "dueDate": "2022-12-31"
+  "dueDate": "2022-12-31",
+  "status": 1
 }
 ```
 Идентификатор нужно указать корректный и его нельзя изменить  
 Формат ```"dueDate"``` строго "yyyy-MM-dd"  
+Формат ```status``` числовой (0: "Created", 1: "InProgress", 2: "Completed")
 
 Можно вводить только поля, которые необходимо редактировать, например:  
 ```json
